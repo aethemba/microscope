@@ -1,6 +1,18 @@
 // In Meteor the 'var' keywords limit the scope of the variable to the current file.
 Posts = new Meteor.Collection('posts');
 
+Posts.allow({
+	update: ownsDocument,
+	remove: ownsDocument
+});
+
+Posts.deny({
+	update: function(userId, post, fieldNames) {
+		// Users may only edit the following two fields
+		return (_.without(fieldNames, 'url', 'title').length > 0 );
+	}
+})
+
 Meteor.methods({
 	post: function(postAttributes) {
 		var user = Meteor.user(),
@@ -24,11 +36,11 @@ Meteor.methods({
 
 		// pick out the whitelisted keys
 		var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
+			title: postAttributes.title + (this.isSimulation ? '(client)' : '(server)'), 
 			userId: user._id,
 			author: user.username,
 			submitted: new Date().getTime()
 		});
-
 
 		var postId = Posts.insert(post);
 
