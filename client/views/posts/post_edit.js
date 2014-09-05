@@ -1,5 +1,5 @@
 Template.postEdit.events({
-	'submit form': function(e){
+	'submit form': function(e) { 
 		e.preventDefault();
 
 		var currentPostId = this._id;
@@ -22,7 +22,7 @@ Template.postEdit.events({
 	'click .delete': function(e) {
 		e.preventDefault();
 
-		if(confirm("Delete this post?")) {
+		if (confirm("Delete this post?")) {
 			var currentPostId = this._id;
 			Posts.remove(currentPostId);
 			Router.go('postsList');
