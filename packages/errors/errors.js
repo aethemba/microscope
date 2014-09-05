@@ -1,5 +1,5 @@
 Errors = {
-	collection: new Meteor.Collection(null);
+	collection: new Meteor.Collection(null),
 
 	throw: function(message) {
 		Errors.collection.insert({message: message, seen: false});
