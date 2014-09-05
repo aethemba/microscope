@@ -1,0 +1,10 @@
+{
+	"name" : "Discover Meteor - Errors",
+	"Description" : "A pattern to display errors, from the Discover Meteor book",
+	"Homepage" : "",
+	"Author" : "Tom Coleman",
+	"Version" : "0.0.1",
+	"packages" : {
+		
+	}
+}
